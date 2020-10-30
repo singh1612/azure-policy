@@ -1,0 +1,36 @@
+{
+ "properties": {
+  "displayName": "Deny-PublicEndpoint-Aks",
+  "policyType": "Custom",
+  "mode": "All",
+  "description": "This policy restricts creation of non-private AKS clusters",
+  "metadata": {
+   "category": "DEKRA",
+   "createdBy": "d6d5335f-c2ac-416e-b790-6059ef6b4a83",
+   "createdOn": "2020-10-30T10:46:19.8144004Z",
+   "updatedBy": null,
+   "updatedOn": null
+  },
+  "parameters": {},
+  "policyRule": {
+   "if": {
+    "allOf": [
+     {
+      "field": "type",
+      "equals": "Microsoft.ContainerService/managedClusters"
+     },
+     {
+      "field": "Microsoft.ContainerService/managedClusters/apiServerAccessProfile.enablePrivateCluster",
+      "notequals": "true"
+     }
+    ]
+   },
+   "then": {
+    "effect": "Deny"
+   }
+  }
+ },
+ "id": "/subscriptions/570c4689-b481-448d-9141-f1e52379f7af/providers/Microsoft.Authorization/policyDefinitions/f76dcdd7-fc9c-40dc-996e-68fbfcb71cd9",
+ "type": "Microsoft.Authorization/policyDefinitions",
+ "name": "f76dcdd7-fc9c-40dc-996e-68fbfcb71cd9"
+}

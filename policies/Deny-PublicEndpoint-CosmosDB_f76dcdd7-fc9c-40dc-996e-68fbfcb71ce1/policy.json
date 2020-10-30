@@ -1,0 +1,36 @@
+{
+ "properties": {
+  "displayName": "Deny-PublicEndpoint-CosmosDB",
+  "policyType": "Custom",
+  "mode": "All",
+  "description": "This policy restrict creation of cosmos db accounts with exposed public endpoints",
+  "metadata": {
+   "category": "DEKRA",
+   "createdBy": "d6d5335f-c2ac-416e-b790-6059ef6b4a83",
+   "createdOn": "2020-10-30T10:46:45.475168Z",
+   "updatedBy": null,
+   "updatedOn": null
+  },
+  "parameters": {},
+  "policyRule": {
+   "if": {
+    "allOf": [
+     {
+      "field": "type",
+      "equals": "Microsoft.DocumentDB/databaseAccounts"
+     },
+     {
+      "field": "Microsoft.DocumentDB/databaseAccounts/publicNetworkAccess",
+      "notequals": "Disabled"
+     }
+    ]
+   },
+   "then": {
+    "effect": "Deny"
+   }
+  }
+ },
+ "id": "/subscriptions/570c4689-b481-448d-9141-f1e52379f7af/providers/Microsoft.Authorization/policyDefinitions/f76dcdd7-fc9c-40dc-996e-68fbfcb71ce1",
+ "type": "Microsoft.Authorization/policyDefinitions",
+ "name": "f76dcdd7-fc9c-40dc-996e-68fbfcb71ce1"
+}
